@@ -1,0 +1,37 @@
+<div class="page-inner">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="align-items-center">
+                        <h4 style="float: left;" class="card-title">Products</h4>
+                        <button style="float: right;" class="btn btn-success btn-round" (click)="openFormModal()">
+                            Add Product
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="groups" class="display table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th style="width: 10%">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let pd of authService.list">
+                                   <td> <a href="{{currentUrl}}/detail/{{pd.id}}">{{pd.productName}}</a></td>
+                                   <td>
+                                      <button (click)="populateForm(pd)"> <fa-icon [icon]="faEdit"></fa-icon></button>
+                                   </td>
+                               </tr>    
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

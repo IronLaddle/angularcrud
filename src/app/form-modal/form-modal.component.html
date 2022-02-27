@@ -1,0 +1,55 @@
+<div class="modal-header">
+  <div *ngIf="isZero()">
+    <h4 class="modal-title">Add Product</h4>
+  </div>
+
+  <div *ngIf="!isZero()">
+    <h4 class="modal-title">Update Product</h4>
+  </div>
+
+    <button type="button" class="close" aria-label="Close"
+     (click)="activeModal.dismiss('Cross click')">
+    </button>
+  </div>
+  <form novalidate autocomplete="off" #form="ngForm" (submit)="submitForm(form)">
+    <input #id type="hidden" name="id" [value]="authService.formData.id" />
+    <div class="modal-boy">
+      <div class="container">
+        <div class="form-group">
+          <label for="Product">Product Name</label>
+          <input class="form-control" placeholder="Product Name" name="productName"
+          #productName="ngModel" [(ngModel)]="authService.formData.productName"
+          required [class.invalid]="productName.invalid && productName.touched">
+
+        </div>
+        <div class="form-group">
+
+          <label for="Url">Url</label>
+          <input class="form-control" placeholder="Url" name="url"
+          #url="ngModel" [(ngModel)]="authService.formData.url"
+          required [class.invalid]="url.invalid && url.touched">
+
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div *ngIf="isZero()">
+        <button class="btn btn-success"
+        [disabled]="form.invalid">
+        Add
+        </button>
+      </div>
+
+      <div *ngIf="!isZero()">
+        <button class="btn btn-warning"
+        style="margin-right: 13px;"
+        [disabled]="form.invalid">
+        Update
+        </button>
+        <button (click)="remove()" class="btn btn-danger"
+        [disabled]="form.invalid">
+        Remove
+        </button>
+      </div>
+    </div>
+  </form>
